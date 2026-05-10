@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <!-- Meta tag penting untuk responsivitas di ponsel -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>UKPBJ RAJA AMPAT - Beranda Publik</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 51, 102, 0.7)), 
+                        url('https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            overflow-x: hidden; /* Mencegah scroll horizontal pada layar kecil */
+        }
+
+        .glass-morphism {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #ffffff, #87ceeb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #87ceeb;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .pimpinan-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .custom-shadow {
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Animasi Dropdown */
+        .dropdown-menu.active {
+            display: block;
+            animation: slideDown 0.15s ease-out forwards;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Perbaikan untuk elemen yang terlalu lebar di layar kecil */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body class="text-white min-h-screen">
+
+    <!-- Navigasi -->
+    <nav class="fixed w-full z-[100] glass-morphism py-3 md:py-4">
+        <div class="container mx-auto px-4 md:px-6 flex justify-between items-center">
+            <div class="flex items-center space-x-2 md:space-x-3">
+                <div class="bg-white p-1.5 md:p-2 rounded-full w-8 h-8 md:w-10 md:h-10 flex items-center justify-center">
+                    <i class="fas fa-ship text-blue-900 text-sm md:text-base"></i>
+                </div>
+                <span class="font-bold text-sm md:text-xl tracking-wider uppercase">UKPBJ Raja Ampat</span>
+            </div>
+            
+            <div class="flex space-x-3 md:space-x-8 items-center">
+                <!-- Nav Link disembunyikan di mobile sangat kecil, atau biarkan ringkas -->
+                <div class="hidden sm:flex space-x-4 md:space-x-8 items-center">
+                    <a href="#beranda" class="nav-link text-sm md:text-base">Beranda</a>
+                    <a href="#profil" class="nav-link text-sm md:text-base">Profil</a>
+                </div>
+                
+                <!-- Menu Akses Website -->
+                <div class="relative">
+                    <button id="dropdownButton" class="bg-blue-600 hover:bg-blue-700 px-3 py-1.5 md:px-5 md:py-2 rounded-full flex items-center space-x-2 transition shadow-lg border border-blue-400/50 cursor-pointer">
+                        <span class="text-[10px] md:text-sm font-semibold tracking-wide">Akses Website</span>
+                        <i id="dropdownIcon" class="fas fa-chevron-down text-[8px] md:text-[10px] transition-transform"></i>
+                    </button>
+                    
+                    <div id="dropdownContent" class="dropdown-menu absolute right-0 mt-2 w-56 md:w-64 bg-white rounded-xl shadow-2xl overflow-hidden hidden z-[110] border border-gray-100">
+                        <div class="p-1.5 space-y-1">
+                            <a href="https://script.google.com/macros/s/AKfycbypBoQnuAn_FLmpAGjyDv0wj5Vozkt4p2828Bcmbocn-mmFDwx4HiACfG_7Yqa3bqKX/exec" 
+                               target="_blank" 
+                               class="flex items-center space-x-3 px-3 py-3 hover:bg-blue-50 rounded-lg transition-all group/item block border border-transparent hover:border-blue-100">
+                                <div class="bg-blue-50 p-2 rounded-lg text-blue-600 group-hover/item:bg-blue-600 group-hover/item:text-white transition-colors">
+                                    <i class="fas fa-file-invoice text-sm"></i>
+                                </div>
+                                <span class="text-gray-800 font-semibold text-xs tracking-tight">Pengarsipan Surat</span>
+                            </a>
+                            
+                            <a href="https://script.google.com/macros/s/AKfycby3Wj6vBYVLDU9DKCUUHcg3QxRUmfliKCQuwoTSlPaLq9sZFErr-pW83b2xV_rL6Qt8/exec" 
+                               target="_blank" 
+                               class="flex items-center space-x-3 px-3 py-3 hover:bg-blue-50 rounded-lg transition-all group/item block border border-transparent hover:border-blue-100">
+                                <div class="bg-blue-50 p-2 rounded-lg text-blue-600 group-hover/item:bg-blue-600 group-hover/item:text-white transition-colors">
+                                    <i class="fas fa-users-gear text-sm"></i>
+                                </div>
+                                <span class="text-gray-800 font-semibold text-xs tracking-tight">POKMIL PBJ</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Bagian Hero -->
+    <section id="beranda" class="pt-32 md:pt-48 pb-12 md:pb-24 px-4 md:px-6">
+        <div class="container mx-auto text-center">
+            <h1 class="text-3xl md:text-7xl font-bold mb-4 md:mb-6 gradient-text">UKPBJ RAJA AMPAT</h1>
+            <p class="text-base md:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed mb-8 md:mb-10 px-2">
+                Pusat Keunggulan Pengadaan Barang dan Jasa yang Transparan, Akuntabel, dan Profesional di Jantung Bahari Dunia.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="#profil" class="w-full sm:w-auto bg-white text-blue-900 font-bold px-8 py-3 rounded-full hover:bg-blue-50 transition shadow-xl text-center">Pelajari Profil</a>
+                <a href="#galeri" class="w-full sm:w-auto border border-white px-8 py-3 rounded-full hover:bg-white hover:text-blue-900 transition font-bold text-center">Lihat Galeri</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bagian Slideshow -->
+    <div class="container mx-auto px-4 md:px-6 mb-12 md:mb-20">
+        <div class="relative overflow-hidden rounded-2xl md:rounded-3xl h-[250px] md:h-[450px] shadow-2xl border-2 md:border-4 border-white/20">
+            <div id="slider" class="flex h-full transition-transform duration-700 ease-in-out">
+                <div class="min-w-full h-full relative">
+                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6 md:p-10">
+                        <h3 class="text-xl md:text-3xl font-bold">Pesona Keindahan Alam Raja Ampat</h3>
+                    </div>
+                </div>
+                <div class="min-w-full h-full relative">
+                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80" class="w-full h-full object-cover" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6 md:p-10">
+                        <h3 class="text-xl md:text-3xl font-bold">Integritas Dalam Pelayanan Publik</h3>
+                    </div>
+                </div>
+            </div>
+            <button onclick="moveSlide(-1)" class="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 p-2 md:p-3 rounded-full backdrop-blur-sm transition z-10">
+                <i class="fas fa-chevron-left text-sm md:text-base"></i>
+            </button>
+            <button onclick="moveSlide(1)" class="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 p-2 md:p-3 rounded-full backdrop-blur-sm transition z-10">
+                <i class="fas fa-chevron-right text-sm md:text-base"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Bagian Profil -->
+    <section id="profil" class="py-12 md:py-20 glass-morphism">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="text-center mb-10 md:text-center md:mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Profil UKPBJ R4</h2>
+                <div class="h-1 w-20 md:w-24 bg-blue-400 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-10 md:gap-12 items-start">
+                <div class="space-y-6">
+                    <h3 class="text-2xl md:text-3xl font-semibold text-blue-200 italic">"Transformasi Pengadaan Digital untuk Kemajuan Daerah"</h3>
+                    <p class="text-base md:text-lg leading-relaxed opacity-90 text-justify">
+                        Unit Kerja Pengadaan Barang/Jasa (UKPBJ) Kabupaten Raja Ampat adalah unit kerja permanen yang menjadi motor penggerak transformasi pengadaan barang dan jasa di wilayah Kepulauan Raja Ampat. Kami berkomitmen untuk mewujudkan pengadaan yang kredibel melalui sistem elektronik dan SDM yang kompeten.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                        <div class="bg-blue-600/30 p-4 md:p-5 rounded-xl border border-blue-400/30">
+                            <h4 class="font-bold text-lg md:text-xl text-white">Visi</h4>
+                            <p class="text-xs md:text-sm text-blue-100">Menjadi pusat keunggulan pengadaan berstandar nasional.</p>
+                        </div>
+                        <div class="bg-blue-600/30 p-4 md:p-5 rounded-xl border border-blue-400/30">
+                            <h4 class="font-bold text-lg md:text-xl text-white">Misi</h4>
+                            <p class="text-xs md:text-sm text-blue-100">Mewujudkan tata kelola yang bersih dan profesional.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bagian Pimpinan -->
+                <div class="w-full">
+                    <h3 class="text-lg md:text-xl font-bold mb-8 text-center uppercase tracking-widest text-blue-200">Pimpinan Terdahulu</h3>
+                    <div class="grid grid-cols-2 gap-4 md:gap-6" id="pimpinan-list">
+                        <!-- Pimpinan 1 -->
+                        <div class="pimpinan-card group text-center">
+                            <div class="relative overflow-hidden rounded-xl md:rounded-2xl mb-2 md:mb-3 h-36 md:h-48 border-2 border-white/20 shadow-lg">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=300&q=80" alt="Pimpinan" class="w-full h-full object-cover transition duration-500">
+                            </div>
+                            <h4 class="text-sm md:text-base font-semibold text-blue-100">Bpk. Nama Lengkap</h4>
+                            <p class="text-[10px] md:text-xs opacity-70">Periode 2018 - 2022</p>
+                        </div>
+                        <!-- Pimpinan 2 -->
+                        <div class="pimpinan-card group text-center">
+                            <div class="relative overflow-hidden rounded-xl md:rounded-2xl mb-2 md:mb-3 h-36 md:h-48 border-2 border-white/20 shadow-lg">
+                                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=300&q=80" alt="Pimpinan" class="w-full h-full object-cover transition duration-500">
+                            </div>
+                            <h4 class="text-sm md:text-base font-semibold text-blue-100">Ibu. Nama Lengkap</h4>
+                            <p class="text-[10px] md:text-xs opacity-70">Periode 2014 - 2018</p>
+                        </div>
+                        <!-- Pimpinan 3 -->
+                        <div class="pimpinan-card group text-center">
+                            <div class="relative overflow-hidden rounded-xl md:rounded-2xl mb-2 md:mb-3 h-36 md:h-48 border-2 border-white/20 shadow-lg">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" alt="Pimpinan" class="w-full h-full object-cover transition duration-500">
+                            </div>
+                            <h4 class="text-sm md:text-base font-semibold text-blue-100">Bpk. Nama Lengkap</h4>
+                            <p class="text-[10px] md:text-xs opacity-70">Periode 2010 - 2014</p>
+                        </div>
+                        <!-- Pimpinan 4 -->
+                        <div class="pimpinan-card group text-center">
+                            <div class="relative overflow-hidden rounded-xl md:rounded-2xl mb-2 md:mb-3 h-36 md:h-48 border-2 border-white/20 shadow-lg">
+                                <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=300&q=80" alt="Pimpinan" class="w-full h-full object-cover transition duration-500">
+                            </div>
+                            <h4 class="text-sm md:text-base font-semibold text-blue-100">Ibu. Nama Lengkap</h4>
+                            <p class="text-[10px] md:text-xs opacity-70">Periode 2006 - 2010</p>
+                        </div>
+                    </div>
+                    <div class="mt-8 flex justify-center">
+                        <button onclick="toggleEditMode()" class="text-[10px] md:text-sm bg-yellow-600/80 hover:bg-yellow-600 px-5 py-2.5 rounded-full transition-all flex items-center space-x-2 shadow-lg border border-yellow-400/50">
+                            <i class="fas fa-user-plus text-[10px]"></i>
+                            <span class="font-bold uppercase tracking-tighter">Tambah Pimpinan</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bagian Galeri -->
+    <section id="galeri" class="py-12 md:py-20">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="text-center mb-10 md:mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Galeri Publik</h2>
+                <p class="text-sm md:text-base text-blue-200 px-4">Dokumentasi Kegiatan dan Keindahan Raja Ampat</p>
+                <div class="h-1 w-20 md:w-24 bg-blue-400 mx-auto rounded-full mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                <div class="group relative overflow-hidden rounded-xl md:rounded-2xl h-48 md:h-64 cursor-pointer custom-shadow border-2 border-white/10">
+                    <img src="https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-blue-900/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                        <i class="fas fa-search-plus text-2xl md:text-3xl"></i>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-xl md:rounded-2xl h-48 md:h-64 cursor-pointer custom-shadow border-2 border-white/10">
+                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-blue-900/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                        <i class="fas fa-search-plus text-2xl md:text-3xl"></i>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-xl md:rounded-2xl h-48 md:h-64 cursor-pointer custom-shadow border-2 border-white/10">
+                    <img src="https://images.unsplash.com/photo-1583212292454-1fe6229603b7?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-blue-900/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                        <i class="fas fa-search-plus text-2xl md:text-3xl"></i>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-xl md:rounded-2xl h-48 md:h-64 cursor-pointer custom-shadow border-2 border-white/10">
+                    <img src="https://plus.unsplash.com/premium_photo-1661858000407-775b5b82142e?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-blue-900/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                        <i class="fas fa-search-plus text-2xl md:text-3xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="glass-morphism py-12 md:py-16 mt-12 md:mt-20 border-t border-white/10">
+        <div class="container mx-auto px-4 md:px-6 text-center">
+            <div class="flex flex-col items-center mb-8">
+                <i class="fas fa-handshake text-3xl md:text-4xl mb-4 md:mb-6 text-blue-300"></i>
+                <h2 class="text-xl md:text-2xl font-bold tracking-widest px-2">UKPBJ KABUPATEN RAJA AMPAT</h2>
+                <p class="text-sm md:text-base text-blue-200 opacity-80 mt-2">Provinsi Papua Barat Daya</p>
+            </div>
+            <div class="flex justify-center space-x-6 md:space-x-8 mb-10">
+                <a href="#" class="text-white hover:text-blue-400 transition transform hover:scale-125"><i class="fab fa-facebook-f text-xl md:text-2xl"></i></a>
+                <a href="#" class="text-white hover:text-blue-400 transition transform hover:scale-125"><i class="fab fa-instagram text-xl md:text-2xl"></i></a>
+                <a href="#" class="text-white hover:text-blue-400 transition transform hover:scale-125"><i class="fab fa-youtube text-xl md:text-2xl"></i></a>
+            </div>
+            <div class="h-[1px] w-full max-w-md bg-white/10 mx-auto mb-8"></div>
+            <p class="text-[10px] md:text-sm opacity-50 tracking-wide px-4 leading-relaxed">© 2024 UKPBJ Raja Ampat. Dibuat untuk Pelayanan Publik Terbaik.</p>
+        </div>
+    </footer>
+
+    <!-- Form Edit Pimpinan (Modal Responsif) -->
+    <div id="edit-modal" class="fixed inset-0 bg-black/90 z-[200] flex items-center justify-center hidden backdrop-blur-sm px-4">
+        <div class="bg-white text-gray-800 p-6 md:p-8 rounded-2xl md:rounded-3xl w-full max-w-md shadow-2xl">
+            <div class="flex justify-between items-center mb-6 md:mb-8">
+                <h3 class="text-xl md:text-2xl font-bold text-blue-900 uppercase tracking-tight">Tambah Pimpinan</h3>
+                <button onclick="toggleEditMode()" class="text-gray-400 hover:text-red-500 transition-colors">
+                    <i class="fas fa-times-circle text-xl md:text-2xl"></i>
+                </button>
+            </div>
+            <div class="space-y-4 md:space-y-6">
+                <div>
+                    <label class="block text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-widest mb-1.5 md:mb-2">Nama Lengkap</label>
+                    <input type="text" id="p-nama" placeholder="Masukkan nama pimpinan" class="w-full p-2.5 md:p-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition text-sm">
+                </div>
+                <div>
+                    <label class="block text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-widest mb-1.5 md:mb-2">Periode Jabatan</label>
+                    <input type="text" id="p-periode" placeholder="Contoh: 2010 - 2014" class="w-full p-2.5 md:p-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition text-sm">
+                </div>
+                <div>
+                    <label class="block text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-widest mb-1.5 md:mb-2">URL Foto Pimpinan</label>
+                    <input type="text" id="p-foto" placeholder="Tempel link foto di sini" class="w-full p-2.5 md:p-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition text-sm">
+                </div>
+                <button onclick="savePimpinan()" class="w-full bg-blue-600 text-white font-bold py-3 md:py-4 rounded-xl md:rounded-2xl hover:bg-blue-700 transition shadow-xl transform active:scale-95 text-xs md:text-sm">
+                    SIMPAN DATA PIMPINAN
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Logika Dropdown Akses Website (Click to Toggle)
+        const dropdownButton = document.getElementById('dropdownButton');
+        const dropdownContent = document.getElementById('dropdownContent');
+        const dropdownIcon = document.getElementById('dropdownIcon');
+
+        dropdownButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdownContent.classList.toggle('hidden');
+            dropdownContent.classList.toggle('active');
+            dropdownIcon.classList.toggle('rotate-180');
+        });
+
+        // Menutup dropdown jika klik di luar area menu
+        window.addEventListener('click', (e) => {
+            if (!dropdownButton.contains(e.target) && !dropdownContent.contains(e.target)) {
+                dropdownContent.classList.add('hidden');
+                dropdownContent.classList.remove('active');
+                dropdownIcon.classList.remove('rotate-180');
+            }
+        });
+
+        // Logika Slider
+        let currentSlide = 0;
+        const slider = document.getElementById('slider');
+        const slidesCount = slider.children.length;
+
+        function moveSlide(direction) {
+            currentSlide = (currentSlide + direction + slidesCount) % slidesCount;
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+
+        setInterval(() => moveSlide(1), 6000);
+
+        // Fungsi Edit Pimpinan
+        function toggleEditMode() {
+            const modal = document.getElementById('edit-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        function savePimpinan() {
+            const nama = document.getElementById('p-nama').value;
+            const periode = document.getElementById('p-periode').value;
+            const foto = document.getElementById('p-foto').value || 'https://via.placeholder.com/300?text=Foto+Pimpinan';
+
+            if(!nama || !periode) {
+                const errorMsg = document.createElement('div');
+                errorMsg.className = "fixed top-20 left-1/2 -translate-x-1/2 bg-red-600 text-white px-6 py-3 rounded-full z-[300] shadow-2xl animate-bounce text-sm font-bold";
+                errorMsg.innerText = "Nama dan Periode harus diisi!";
+                document.body.appendChild(errorMsg);
+                setTimeout(() => errorMsg.remove(), 3000);
+                return;
+            }
+
+            const container = document.getElementById('pimpinan-list');
+            const newCard = `
+                <div class="pimpinan-card group text-center">
+                    <div class="relative overflow-hidden rounded-xl md:rounded-2xl mb-2 md:mb-3 h-36 md:h-48 border-2 border-white/20 shadow-lg">
+                        <img src="${foto}" alt="${nama}" class="w-full h-full object-cover transition duration-500">
+                    </div>
+                    <h4 class="text-sm md:text-base font-semibold text-blue-100">${nama}</h4>
+                    <p class="text-[10px] md:text-xs opacity-70">Periode ${periode}</p>
+                </div>
+            `;
+            
+            container.insertAdjacentHTML('beforeend', newCard);
+            
+            document.getElementById('p-nama').value = '';
+            document.getElementById('p-periode').value = '';
+            document.getElementById('p-foto').value = '';
+            toggleEditMode();
+        }
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const target = document.querySelector(targetId);
+                if(target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
